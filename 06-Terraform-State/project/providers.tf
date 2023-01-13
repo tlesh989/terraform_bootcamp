@@ -1,9 +1,10 @@
 terraform {
-  backend "s3" {
-    bucket  = "myterraformudemybootcamp" // Put your bucket info here
-    key     = "06terraformstate/terraform.tfstate"
-    region  = "us-west-2"
-    profile = "terraform_bootcamp"
+  cloud {
+    organization = "tlesh-net"
+
+    workspaces {
+      name = "terraform_bootcamp"
+    }
   }
   required_providers {
     aws = {
