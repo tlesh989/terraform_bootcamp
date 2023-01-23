@@ -1,0 +1,34 @@
+# switched regions and ran terraform apply and used this as practice to 
+# use terraform import
+
+resource "aws_vpc" "main" {
+
+}
+
+resource "aws_internet_gateway" "main" {
+
+}
+
+resource "aws_subnet" "private" {
+
+}
+
+resource "aws_subnet" "privateB" {
+
+}
+
+resource "aws_subnet" "public" {
+
+}
+
+resource "aws_subnet" "publicB" {
+
+}
+
+resource "aws_route_table" "private" {
+
+}
+
+resource "aws_route_table" "public" {
+
+}
