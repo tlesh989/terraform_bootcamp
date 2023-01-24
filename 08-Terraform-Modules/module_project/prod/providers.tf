@@ -18,6 +18,6 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-west-2"
+  region  = local.region
   profile = "terraform_bootcamp"
 }

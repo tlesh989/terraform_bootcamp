@@ -1,4 +1,4 @@
 locals {
-  env    = "dev"
+  env    = "prod"
   region = "us-east-2"
 }

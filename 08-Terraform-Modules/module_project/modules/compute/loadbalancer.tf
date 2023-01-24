@@ -16,8 +16,8 @@ resource "aws_security_group" "lb_to_ec2" {
   })
 }
 
-resource "aws_lb" "name" {
-  name                       = "terraform-bootcamp-module-alb"
+resource "aws_lb" "main" {
+  name                       = "tf-bootcamp-module-alb-${var.env}"
   internal                   = false
   load_balancer_type         = "application"
   subnets                    = var.public_subnet_ids
@@ -29,8 +29,8 @@ resource "aws_lb" "name" {
   })
 }
 
-resource "aws_lb_target_group" "name" {
-  name        = "terraform-bootcamp-module-alb-tg"
+resource "aws_lb_target_group" "main" {
+  name        = "tf-bootcamp-module-alb-tg-${var.env}"
   target_type = "instance"
   port        = 80
   protocol    = "HTTP"
@@ -47,4 +47,15 @@ resource "aws_lb_target_group_attachment" "serverB" {
   target_group_arn = aws_lb_target_group.main.arn
   target_id        = aws_instance.serverB.id
   port             = 80
+}
+
+resource "aws_lb_listener" "main" {
+  load_balancer_arn = aws_lb.main.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
 }
